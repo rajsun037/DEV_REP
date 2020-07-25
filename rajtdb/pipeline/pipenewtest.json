@@ -1,0 +1,113 @@
+{
+	"name": "pipenewtest",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeSource",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "EMPNO",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "EMPNO",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "ENAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ENAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HIREDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "HIREDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "SAL",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "SAL",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "COMM",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "COMM",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "DEPTNO",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "DEPTNO",
+									"type": "Int64"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SnowflakeTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
