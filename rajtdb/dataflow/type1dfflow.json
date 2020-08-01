@@ -1,0 +1,32 @@
+{
+	"name": "type1dfflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "linkedService2",
+						"type": "LinkedServiceReference"
+					},
+					"name": "srcemp"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "linkedService2",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Filter1"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'excel',\n\tfileSystem: 'inputsource',\n\tfileName: 'EMP.csv',\n\tskipLines: 1,\n\tsheetName: '',\n\tfirstRowAsHeader: true) ~> srcemp\nsrcemp filter(ERROR_FUNCTION('')) ~> Filter1\nFilter1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tentity: '',\n\tformat: 'cdm',\n\tcorpusPath: '',\n\tfolderPath: '',\n\tfileSystem: '',\n\tcolumnDelimiter: ',',\n\tcolumnNamesAsHeader: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}
